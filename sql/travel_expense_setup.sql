@@ -212,3 +212,152 @@ SELECT
 FROM travel_expenses
 GROUP BY Month
 ORDER BY MIN(Travel_Start_Date);
+
+
+SELECT
+    SUM(Advance_Payment) AS Total_Advance,
+    SUM(Total_Amount) AS Total_Expense,
+    SUM(Balance_Amount) AS Total_Balance,
+    ROUND(
+        SUM(Total_Amount) / SUM(Advance_Payment) * 100,
+        2
+    ) AS Expense_vs_Advance_Percentage
+FROM travel_expenses;
+
+
+SELECT
+    Payee_Name,
+    SUM(Advance_Payment) AS Total_Advance,
+    SUM(Total_Amount) AS Total_Expense,
+    SUM(Balance_Amount) AS Total_Balance,
+    ROUND(
+        SUM(Total_Amount) / SUM(Advance_Payment) * 100,
+        2
+    ) AS Expense_vs_Advance_Percentage
+FROM travel_expenses
+GROUP BY Payee_Name
+ORDER BY Expense_vs_Advance_Percentage DESC;
+
+
+SELECT
+    Travel_Days,
+    COUNT(*) AS Number_of_Trips,
+    SUM(Total_Amount) AS Total_Expense,
+    ROUND(AVG(Total_Amount), 2) AS Average_Expense_Per_Trip,
+    ROUND(
+        SUM(Total_Amount) / SUM(Travel_Days),
+        2
+    ) AS Expense_Per_Travel_Day
+FROM travel_expenses
+GROUP BY Travel_Days
+ORDER BY Travel_Days;
+
+
+SELECT
+    Payee_Name,
+    COUNT(*) AS Number_of_Trips,
+    SUM(Travel_Days) AS Total_Travel_Days,
+    SUM(Total_Amount) AS Total_Expense,
+    ROUND(
+        SUM(Total_Amount) / SUM(Travel_Days),
+        2
+    ) AS Expense_Per_Travel_Day
+FROM travel_expenses
+GROUP BY Payee_Name
+ORDER BY Expense_Per_Travel_Day DESC;
+
+
+SELECT
+    Site_Name,
+    COUNT(*) AS Number_of_Trips,
+    SUM(Travel_Days) AS Total_Travel_Days,
+    SUM(Total_Amount) AS Total_Expense,
+    ROUND(
+        SUM(Total_Amount) / SUM(Travel_Days),
+        2
+    ) AS Expense_Per_Travel_Day
+FROM travel_expenses
+GROUP BY Site_Name
+ORDER BY Expense_Per_Travel_Day DESC;
+
+
+SELECT
+    Expense_ID,
+    Payee_Name,
+    Site_City,
+    Client,
+    Travel_Days,
+    Total_Amount,
+    ROUND(Total_Amount / Travel_Days, 2) AS Expense_Per_Day
+FROM travel_expenses
+ORDER BY Total_Amount DESC
+LIMIT 10;
+
+
+SELECT
+    Expense_ID,
+    Payee_Name,
+    Site_City,
+    Travel_Days,
+    Food_Expense,
+    Lodging_Boarding_Expense,
+    Local_Conveyance_Expense,
+    Petrol_Diesel_Expense,
+    NDT_Charges,
+    Other_Expense,
+    Total_Amount
+FROM travel_expenses
+ORDER BY Total_Amount DESC
+LIMIT 10;
+
+
+SELECT
+    CASE
+        WHEN Balance_Amount > 0 THEN 'Positive Balance'
+        WHEN Balance_Amount < 0 THEN 'Negative Balance'
+        ELSE 'Zero Balance'
+    END AS Balance_Status,
+    COUNT(*) AS Number_of_Trips,
+    SUM(ABS(Balance_Amount)) AS Total_Balance_Amount
+FROM travel_expenses
+GROUP BY
+    CASE
+        WHEN Balance_Amount > 0 THEN 'Positive Balance'
+        WHEN Balance_Amount < 0 THEN 'Negative Balance'
+        ELSE 'Zero Balance'
+    END
+ORDER BY Number_of_Trips DESC;
+
+
+SELECT
+    Month,
+    SUM(Advance_Payment) AS Total_Advance,
+    SUM(Total_Amount) AS Total_Expense,
+    SUM(Balance_Amount) AS Total_Balance
+FROM travel_expenses
+GROUP BY Month
+ORDER BY MIN(Travel_Start_Date);
+
+
+SELECT
+    Payee_Name,
+    Site_Name,
+    COUNT(*) AS Number_of_Trips,
+    SUM(Total_Amount) AS Total_Expense,
+    ROUND(AVG(Total_Amount), 2) AS Average_Expense_Per_Trip
+FROM travel_expenses
+GROUP BY Payee_Name, Site_Name
+ORDER BY Total_Expense DESC;
+
+
+SELECT
+    Site_Name,
+    SUM(Food_Expense) AS Food,
+    SUM(Lodging_Boarding_Expense) AS Lodging,
+    SUM(Local_Conveyance_Expense) AS Local_Conveyance,
+    SUM(Petrol_Diesel_Expense) AS Petrol_Diesel,
+    SUM(NDT_Charges) AS NDT,
+    SUM(Other_Expense) AS Other
+FROM travel_expenses
+GROUP BY Site_Name
+ORDER BY Site_Name;
