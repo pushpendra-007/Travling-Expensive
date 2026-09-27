@@ -122,6 +122,25 @@ The Power BI dashboard provides interactive visualizations for:
 - Advance vs actual expenses
 - High-expense trips
 
+
+## 📸 Dashboard Screenshots
+
+### 1. Overview Dashboard
+
+![Overview Dashboard](dashboard_overview.png)
+
+### 2. Financial Analysis
+
+![Financial Analysis](Financial%20Analysis.png)
+
+### 3. Efficiency & Insights
+
+![Efficiency & Insights](Efficiency%20%26%20Insights.png)
+
+### 4. Detailed Analysis
+
+![Detailed Analysis](Detailed%20Analysis.png)
+
 ---
 
 ## 🎯 Learning Objectives
