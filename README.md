@@ -22,21 +22,6 @@ The project combines Python, Pandas, SQL, and Power BI to perform end-to-end dat
 
 ---
 
-## 📂 Project Structure
-
-```text
-Travling-Expensive/
-│
-├── sql/
-│   └── travel_expense_setup.sql
-│
-├── Travel_Expense_Dashboard.pbix
-├── Traveling.ipynb
-├── Traveling_Expenses_All_2026.csv
-├── .gitignore
-└── README.md
-
-
 ## 📊 Analysis Performed
 
 ### Python / Pandas
@@ -159,3 +144,19 @@ This project helped me practice:
 **Pushpendra Yadav**
 
 B.Tech Computer Engineering / Data Science
+
+---
+
+## 📂 Project Structure
+
+```text
+Travling-Expensive/
+│
+├── sql/
+│   └── travel_expense_setup.sql
+│
+├── Travel_Expense_Dashboard.pbix
+├── Traveling.ipynb
+├── Traveling_Expenses_All_2026.csv
+├── .gitignore
+└── README.md
